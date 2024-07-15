@@ -9,7 +9,7 @@
 
 int run = 1;
 char key;
-int direcao, num=4;
+int direcao, num = 4;
 struct Cobra{int x_pos, y_pos; char corpo;} c[100];
 struct Fruta{int x_pos, y_pos;} f;
 
@@ -36,10 +36,11 @@ int Pos_Co(){
 
     //limites da tela
     if(c[0].x_pos <= 1){c[0].x_pos = 1;};
-    if(c[0].x_pos >= 40){c[0].x_pos = 40;};
+    if(c[0].x_pos >= 80){c[0].x_pos = 80;};
     if(c[0].y_pos <= 1){c[0].y_pos = 1;};
-    if(c[0].y_pos >= 40){c[0].y_pos = 40;};
-    //direcao da figura
+    if(c[0].y_pos >= 80){c[0].y_pos = 80;};
+
+    //direcao
     if(direcao==0){c[0].y_pos-=1;};
     if(direcao==1){c[0].y_pos+=1;};
     if(direcao==2){c[0].x_pos+=1;};
@@ -49,17 +50,31 @@ int Pos_Co(){
 
 int Draw(){
     //desenha a figura
-    
-    c[0].corpo = '@';
-    COORD coord;
-    coord.X = c[0].x_pos;
-    coord.Y = c[0].y_pos;
-    for(int m = 0; m<4; m++){SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);printf("%c", c[m].corpo);};
-    //SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
     //printf("\033[0;10m %i", c[0]);
-    //SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-    //printf("x:%i  y:%i", coord.X, coord.Y);
-    //printf("%c", c[0].corpo);
+
+    c[0].corpo = '8';
+    c[1].corpo = 'O';
+    c[2].corpo = '0';
+    c[3].corpo = '0';
+    c[4].corpo = '0';
+    COORD coord;
+    coord.X = c[4].x_pos;
+    coord.Y = c[4].y_pos;
+
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+    printf("%c", c[4].corpo);
+    coord.X = c[3].x_pos;
+    coord.Y = c[3].y_pos;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+    printf("%c", c[3].corpo);
+    coord.X = c[2].x_pos;
+    coord.Y = c[2].y_pos;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+    printf("%c", c[2].corpo);
+    coord.X = c[1].x_pos;
+    coord.Y = c[1].y_pos;
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+    printf("%c", c[1].corpo);
 };
 
 void SetBackgroundColor(int backcolor){
@@ -67,20 +82,17 @@ void SetBackgroundColor(int backcolor){
     CONSOLE_SCREEN_BUFFER_INFO csbi;
     WORD wColor = ((backcolor & 0x0F) << 4) + (csbi.wAttributes & 0x0F);
     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), wColor);
-    //printf("\033[0;10m %i", c[0]);
+
 };
 
 int main(){
-    int p = 0;
-    COORD coord;
-    
+
+    SetBackgroundColor(3);
+
     //loop
     while(run==1){
 
-        //printf("\033[0;10m ");
-        //printf("\033[%dm ", 40+5);//text background
         Draw();
-
 
         //keyboard detections
         int hit = kbhit();
@@ -92,7 +104,6 @@ int main(){
             if(key=='a'){direcao=3;};
             if(key=='p'){printf("   :)  jogo pausado!\n"); system("pause");};
         };
-
 
         //run+=1;
         
