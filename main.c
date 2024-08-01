@@ -52,29 +52,21 @@ int Draw(){
     //desenha a figura
     //printf("\033[0;10m %i", c[0]);
 
-    c[0].corpo = '8';
-    c[1].corpo = 'O';
-    c[2].corpo = '0';
-    c[3].corpo = '0';
-    c[4].corpo = '0';
+    //c[0].corpo = 'O';
+    //c[1].corpo = '0';
+    //c[2].corpo = '0';
+    //c[3].corpo = '0';
+    //c[4].corpo = '0';
     COORD coord;
-    coord.X = c[4].x_pos;
-    coord.Y = c[4].y_pos;
 
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-    printf("%c", c[4].corpo);
-    coord.X = c[3].x_pos;
-    coord.Y = c[3].y_pos;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-    printf("%c", c[3].corpo);
-    coord.X = c[2].x_pos;
-    coord.Y = c[2].y_pos;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-    printf("%c", c[2].corpo);
-    coord.X = c[1].x_pos;
-    coord.Y = c[1].y_pos;
-    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
-    printf("%c", c[1].corpo);
+    for(int a = 0; a < 10; a ++){
+        c[a].corpo = '@';
+        coord.X = c[a].x_pos;
+        coord.Y = c[a].y_pos;
+        printf("%c", c[a].corpo);
+        SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+        
+    };
 };
 
 void SetBackgroundColor(int backcolor){
